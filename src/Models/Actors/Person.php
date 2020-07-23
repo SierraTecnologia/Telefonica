@@ -5,7 +5,7 @@ namespace Telefonica\Models\Actors;
 use Support\Models\Base;
 use Telefonica\Traits\AsHuman;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Support\Utils\Modificators\StringModificator;
+use Muleta\Utils\Modificators\StringModificator;
 
 class Person extends Base implements HasMedia
 {

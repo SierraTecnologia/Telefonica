@@ -14,7 +14,7 @@ use Config;
 use Route;
 use Illuminate\Routing\Router;
 
-use Support\Traits\Providers\ConsoleTools;
+use Muleta\Traits\Providers\ConsoleTools;
 
 use Telefonica\Facades\Telefonica as TelefonicaFacade;
 use Illuminate\Contracts\Events\Dispatcher;

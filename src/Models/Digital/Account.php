@@ -3,7 +3,7 @@
 namespace Telefonica\Models\Digital;
 
 use Support\Models\Base;
-use Support\Traits\Models\ComplexRelationamentTrait;
+use Muleta\Traits\Models\ComplexRelationamentTrait;
 use Integrations\Models\Integration;
 use Telefonica\Models\Actors\Business;
 
