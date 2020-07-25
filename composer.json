@@ -1,8 +1,25 @@
 {
     "name": "sierratecnologia/telefonica",
-    "description": "Telefonica de Projetos",
+    "description": "telefonica",
+    "type": "library",
+    "keywords": [
+        "sierratecnologia",
+        "telefonica"
+    ],
     "license": "MIT",
+    "homepage": "https://sierratecnologia.com/packages/telefonica/",
+    "support": {
+        "email": "help@sierratecnologia.com.br",
+        "issues": "https://github.com/sierratecnologia/telefonica/issues",
+        "source": "https://github.com/sierratecnologia/telefonica",
+        "docs": "https://github.com/sierratecnologia/telefonica/blob/master/README.md"
+    },
     "authors": [
+        {
+            "name": "SierraTecnologia",
+            "homepage": "https://sierratecnologia.com.br",
+            "email": "help@sierratecnologia.com.br"
+        },
         {
             "name": "Ricardo Rebello Sierra",
             "email": "contato@ricardosierra.com.br"
