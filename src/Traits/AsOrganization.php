@@ -14,7 +14,7 @@ use Overtrue\LaravelFollow\Traits\CanBookmark;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 
 use Muleta\Traits\Models\HasPersonality;
-use Telefonica\Traits\MakeEconomicActions;
+use Bancario\Traits\MakeEconomicActions;
 use Telefonica\Traits\HasTask;
 use Telefonica\Traits\HasRoutine;
 use Stalker\Traits\HasPhoto;

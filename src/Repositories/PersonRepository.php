@@ -1,6 +1,6 @@
 <?php
 
-namespace Population\Repositories;
+namespace Telefonica\Repositories;
 
 use Illuminate\Support\Facades\Schema;
 use Telefonica\Models\Actors\Person;
