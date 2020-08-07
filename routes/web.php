@@ -10,7 +10,6 @@ Route::group(
 
 
 
-
                         Route::resource('projects', 'ProjectController');
                         // /**
                         //  * 

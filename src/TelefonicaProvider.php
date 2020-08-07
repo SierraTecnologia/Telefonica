@@ -24,6 +24,9 @@ class TelefonicaProvider extends ServiceProvider
 {
     use ConsoleTools;
 
+    public $packageName = 'telefonica';
+    const pathVendor = 'sierratecnologia/telefonica';
+
     public static $aliasProviders = [
         'Telefonica' => \Telefonica\Facades\Telefonica::class,
     ];
@@ -96,20 +99,10 @@ class TelefonicaProvider extends ServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
-
         /**
-         * Telefonica; Routes
+         * Transmissor; Routes
          */
-        Route::group(
-            [
-                'namespace' => '\Telefonica\Http\Controllers',
-                'prefix' => \Illuminate\Support\Facades\Config::get('application.routes.main', ''),
-                'as' => 'rica.',
-                // 'middleware' => 'rica',
-            ], function ($router) {
-                include __DIR__.'/../routes/web.php';
-            }
-        );
+        $this->loadRoutesForRiCa(__DIR__.'/../routes');
     }
 
     /**
