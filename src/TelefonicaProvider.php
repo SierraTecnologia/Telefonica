@@ -61,7 +61,7 @@ class TelefonicaProvider extends ServiceProvider
             'Procurar' => [
                 [
                     'text'        => 'Projetos',
-                    'route'       => 'rica.telefonica.projetos.index',
+                    'route'       => 'telefonica.projetos.index',
                     'icon'        => 'fas fa-fw fa-ship',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
