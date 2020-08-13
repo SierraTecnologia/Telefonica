@@ -8,8 +8,8 @@
    </section>
    <div class="content">
 
-       <div class="box box-primary">
-           <div class="box-body">
+       <div class="box card box-primary">
+           <div class="box-body card-body">
                <div class="row">
                    {!! Form::model($email, ['route' => ['emails.update', $email->id], 'method' => 'patch']) !!}
 

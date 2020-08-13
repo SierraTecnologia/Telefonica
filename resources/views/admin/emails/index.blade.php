@@ -13,8 +13,8 @@
     @include('layouts.partials.message')
 
     <div class="clearfix"></div>
-    <div class="box box-primary">
-        <div class="box-body">
+    <div class="box card box-primary">
+        <div class="box-body card-body">
                 @include('root.emails.table')
         </div>
     </div>
