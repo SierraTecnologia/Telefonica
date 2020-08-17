@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('content_header')
     <h1 class="pull-left">{!! trans('words.emails') !!}</h1>
