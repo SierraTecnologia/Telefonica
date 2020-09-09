@@ -2,23 +2,22 @@
 
 namespace Telefonica;
 
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-use Telefonica\Services\TelefonicaService;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\View;
-
-use Log;
 use App;
 use Config;
-use Route;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use Log;
 use Muleta\Traits\Providers\ConsoleTools;
 
-use Telefonica\Facades\Telefonica as TelefonicaFacade;
-use Illuminate\Contracts\Events\Dispatcher;
+use Route;
 
+use Telefonica\Facades\Telefonica as TelefonicaFacade;
+use Telefonica\Services\TelefonicaService;
 
 class TelefonicaProvider extends ServiceProvider
 {
@@ -47,6 +46,7 @@ class TelefonicaProvider extends ServiceProvider
             'icon' => 'fas fa-fw fa-search',
             'icon_color' => "blue",
             'label_color' => "success",
+            'section' => "master",
             'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
         'Telefonica' => [
@@ -55,6 +55,7 @@ class TelefonicaProvider extends ServiceProvider
                 'icon'        => 'fas fa-fw fa-search',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
+                'section' => "master",
                 'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                 // 'access' => \App\Models\Role::$ADMIN
             ],
@@ -65,6 +66,7 @@ class TelefonicaProvider extends ServiceProvider
                     'icon'        => 'fas fa-fw fa-ship',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
+                    'section' => "master",
                     'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
@@ -195,7 +197,6 @@ class TelefonicaProvider extends ServiceProvider
 
         $this->loadViews();
         $this->loadTranslations();
-
     }
 
     private function loadViews()
@@ -208,7 +209,6 @@ class TelefonicaProvider extends ServiceProvider
             $viewsPath => base_path('resources/views/vendor/telefonica'),
             ], ['views',  'sitec', 'sitec-views']
         );
-
     }
     
     private function loadTranslations()
@@ -226,7 +226,7 @@ class TelefonicaProvider extends ServiceProvider
 
 
     /**
-     * 
+     *
      */
     private function loadLogger()
     {
@@ -238,5 +238,4 @@ class TelefonicaProvider extends ServiceProvider
             ]
         );
     }
-
 }
