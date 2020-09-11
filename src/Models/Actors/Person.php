@@ -2,23 +2,23 @@
 
 namespace Telefonica\Models\Actors;
 
+use Muleta\Utils\Modificators\StringModificator;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Support\Models\Base;
 use Telefonica\Traits\AsHuman;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Muleta\Utils\Modificators\StringModificator;
 
 class Person extends Base implements HasMedia
 {
     use AsHuman;
 
-    protected $table = 'persons';  
+    protected $table = 'persons';
     
     public $incrementing = false;
     protected $casts = [
         'code' => 'string',
     ];
     protected $primaryKey = 'code';
-    protected $keyType = 'string'; 
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +29,62 @@ class Person extends Base implements HasMedia
         'code',
         'name',
         'cpf'
+    ];
+    
+    public $formFields = [
+        [
+            'name' => 'name',
+            'label' => 'name',
+            'type' => 'text'
+        ],
+        [
+            'name' => 'cpf',
+            'label' => 'cpf',
+            'type' => 'text'
+        ],
+        // [
+        //     'name' => 'slug',
+        //     'label' => 'slug',
+        //     'type' => 'text'
+        // ],
+        // [
+        //     'name' => 'status',
+        //     'label' => 'Status',
+        //     'type' => 'checkbox'
+        // ],
+        // [
+        //     'name' => 'status',
+        //     'label' => 'Enter your content here',
+        //     'type' => 'textarea'
+        // ],
+        // ['name' => 'publish_on', 'label' => 'Publish Date', 'type' => 'date'],
+        // ['name' => 'category_id', 'label' => 'Category', 'type' => 'select', 'relationship' => 'category'],
+        // ['name' => 'tags', 'label' => 'Tags', 'type' => 'select_multiple', 'relationship' => 'tags'],
+    ];
+
+    public $indexFields = [
+        'name',
+        'cpf',
+        // 'slug',
+        // 'status'
+    ];
+
+    public $validationRules = [
+        'name'       => 'required|max:255',
+        'cpf'        => 'required|max:100',
+        // 'slug'        => 'required|max:100',
+        // 'status'        => 'boolean',
+        // 'publish_on'  => 'date',
+        // 'published'   => 'boolean',
+        // 'category_id' => 'required|int',
+    ];
+
+    public $validationMessages = [
+        'name.required' => "Nome é obrigatório."
+    ];
+
+    public $validationAttributes = [
+        'name' => 'Name'
     ];
 
     protected $mappingProperties = array(
@@ -50,7 +106,7 @@ class Person extends Base implements HasMedia
 
         /**
          * Grupo de Usuário:
-         * 
+         *
          * 3 -> Usuário de Produtora
          * Default: 3
          */
