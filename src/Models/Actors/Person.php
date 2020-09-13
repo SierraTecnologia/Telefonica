@@ -3,11 +3,10 @@
 namespace Telefonica\Models\Actors;
 
 use Muleta\Utils\Modificators\StringModificator;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Support\Models\Base;
 use Telefonica\Traits\AsHuman;
 
-class Person extends Base implements HasMedia
+class Person extends Base
 {
     use AsHuman;
 
