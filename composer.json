@@ -27,6 +27,7 @@
     ],
     "require": {
         "php": "^7.4",
+        "propaganistas/laravel-phone": "^4.0",
         "sierratecnologia/crypto": "dev-master"
     },
     "autoload": {
