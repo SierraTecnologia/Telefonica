@@ -8,15 +8,16 @@ use Telefonica\Models\Digital\Phone;
 use Stalker\Models\Photo;
 use Stalker\Models\PhotoAlbum;
 
-class PhoneController extends Controller {
+class PhoneController extends Controller
+{
 
 
-	public function index()
-	{
+    public function index()
+    {
 
         $phones = Phone::all();
-		return view('root.phones.index',  compact('phones'));
-	}
+        return view('root.phones.index',  compact('phones'));
+    }
 
     /**
      * Show the form for creating a new resource.
