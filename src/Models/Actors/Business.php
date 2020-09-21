@@ -2,7 +2,7 @@
 
 namespace Telefonica\Models\Actors;
 
-use Support\Models\Base;
+use Pedreiro\Models\Base;
 use Telefonica\Traits\AsHuman;
 use Cocur\Slugify\Slugify;
 use Telefonica\Traits\AsOrganization;

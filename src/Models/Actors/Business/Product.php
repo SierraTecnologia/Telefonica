@@ -2,7 +2,7 @@
 
 namespace Telefonica\Models\Actors\Business;
 
-use Support\Models\Base;
+use Pedreiro\Models\Base;
 
 class Product extends Base
 {

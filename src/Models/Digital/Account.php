@@ -2,7 +2,7 @@
 
 namespace Telefonica\Models\Digital;
 
-use Support\Models\Base;
+use Pedreiro\Models\Base;
 use Muleta\Traits\Models\ComplexRelationamentTrait;
 use Integrations\Models\Integration;
 use Telefonica\Models\Actors\Business;

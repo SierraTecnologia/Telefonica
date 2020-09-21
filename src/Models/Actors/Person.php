@@ -3,7 +3,7 @@
 namespace Telefonica\Models\Actors;
 
 use Muleta\Utils\Modificators\StringModificator;
-use Support\Models\Base;
+use Pedreiro\Models\Base;
 use Telefonica\Traits\AsHuman;
 
 class Person extends Base

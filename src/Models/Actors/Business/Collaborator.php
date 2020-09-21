@@ -5,7 +5,7 @@
 
 namespace Telefonica\Models\Actors\Business;
 
-use Support\Models\Base;
+use Pedreiro\Models\Base;
 use Telefonica\Models\Actors\Person;
 
 class Collaborator extends Person

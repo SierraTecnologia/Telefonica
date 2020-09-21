@@ -2,7 +2,7 @@
 
 namespace Telefonica\Models\Digital;
 
-use Support\Models\Base;
+use Pedreiro\Models\Base;
 use Muleta\Traits\Models\ComplexRelationamentTrait;
 
 class Phone extends Base
