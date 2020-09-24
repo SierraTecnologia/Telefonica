@@ -2,22 +2,22 @@
 
 namespace Telefonica\Traits;
 
-use Log;
+use Bancario\Traits\MakeEconomicActions;
 // Podem Seguir
-use Overtrue\LaravelFollow\Traits\CanFollow;
-use Overtrue\LaravelFollow\Traits\CanLike;
+use Log;
+use Muleta\Traits\Models\HasPersonality;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
+use Overtrue\LaravelFollow\Traits\CanBookmark;
 use Overtrue\LaravelFollow\Traits\CanFavorite;
+use Overtrue\LaravelFollow\Traits\CanFollow;
+// Podem Serem Seguidos
+use Overtrue\LaravelFollow\Traits\CanLike;
+
 use Overtrue\LaravelFollow\Traits\CanSubscribe;
 use Overtrue\LaravelFollow\Traits\CanVote;
-use Overtrue\LaravelFollow\Traits\CanBookmark;
-// Podem Serem Seguidos
-use Overtrue\LaravelFollow\Traits\CanBeFollowed;
-
-use Muleta\Traits\Models\HasPersonality;
-use Bancario\Traits\MakeEconomicActions;
-use Telefonica\Traits\HasTask;
+// use Stalker\Traits\HasPhoto;
 use Telefonica\Traits\HasRoutine;
-use Stalker\Traits\HasPhoto;
+use Telefonica\Traits\HasTask;
 
 trait AsOrganization
 {
@@ -28,7 +28,7 @@ trait AsOrganization
     use CanFollow, CanLike, CanFavorite, CanSubscribe, CanVote, CanBookmark;
     use CanBeFollowed;
 
-    use HasPhoto;
+    // use HasPhoto; @todo Nao precisa do Stalker
 
     /**
      * Aparece em videos
@@ -56,7 +56,7 @@ trait AsOrganization
         return true;
     }
     /**
-     * 
+     *
      */
 
     /**
@@ -78,7 +78,7 @@ trait AsOrganization
     /**
      * Events
      */
-    public static function bootAsOrganization()                                                                                                                                                             
+    public static function bootAsOrganization()
     {
 
         // static::deleting(function (self $user) {
@@ -87,6 +87,4 @@ trait AsOrganization
         //     });
         // });
     }
-    
-
 }
