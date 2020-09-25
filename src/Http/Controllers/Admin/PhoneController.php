@@ -12,7 +12,7 @@ class PhoneController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
 
         $phones = Phone::all();
