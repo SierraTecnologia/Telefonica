@@ -50,7 +50,7 @@ class PhoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $phone = Phone::findOrFail($id);
 
@@ -82,7 +82,7 @@ class PhoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $phone = Phone::findOrFail($id);
 
