@@ -15,7 +15,11 @@ class ProjectController extends Base
      * @var string
      */
     public $title = 'Projects';
-    public $model = Project::class;
+
+    /**
+     * @var Project::class
+     */
+    public string $model = Project::class;
 
     /**
      * @var string

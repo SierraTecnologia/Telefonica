@@ -99,7 +99,7 @@ class PersonService
      *
      * @param int $id
      *
-     * @return Persons
+     * @return Persons|false
      */
     public function cancel($orderId)
     {

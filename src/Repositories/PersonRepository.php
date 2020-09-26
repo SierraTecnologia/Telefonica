@@ -7,10 +7,7 @@ use Telefonica\Models\Actors\Person;
 
 class PersonRepository
 {
-    public function __construct(Person $model)
-    {
-        $this->model = $model;
-    }
+
 
     /**
      * Returns all Persons.
@@ -81,42 +78,6 @@ class PersonRepository
     public function find($id)
     {
         return $this->model->find($id);
-    }
-
-    /**
-     * Find Persons by given id.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Support\Collection|null|static|Persons
-     */
-    public function getByCustomer($id)
-    {
-        return $this->model->where('user_id', '=', $id);
-    }
-
-    /**
-     * Find Persons by given id.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Support\Collection|null|static|Persons
-     */
-    public function getByCustomerAndId($customer, $id)
-    {
-        return $this->model->where('user_id', $customer)->where('id', $id)->first();
-    }
-
-    /**
-     * Find Persons by given id.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Support\Collection|null|static|Persons
-     */
-    public function getByCustomerAndUuid($customer, $id)
-    {
-        return $this->model->where('user_id', $customer)->where('uuid', $id)->first();
     }
 
     /**
