@@ -10,10 +10,11 @@ class Person extends Base
 {
     use AsHuman;
     
-
-
-
-
-    
-
+    protected $table = 'persons';
+    public $incrementing = false;
+    protected $casts = [
+        'code' => 'string',
+    ];
+    protected $primaryKey = 'code';
+    protected $keyType = 'string';
 }

@@ -54,7 +54,7 @@ class Sitio extends Base
      */
     public function users()
     {
-        return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'sitioable');
+        return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('application.directorys.models.users', \App\Models\User::class), 'sitioable');
     }
 
     /**
