@@ -2,9 +2,10 @@
 
 namespace Telefonica\Services;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Informate\Models\Refund;
 use SierraTecnologia\Crypto\Services\Crypto;
-use Illuminate\Support\Facades\Config;
 use Telefonica\Repositories\PersonRepository;
 
 class PersonService
@@ -135,7 +136,8 @@ class PersonService
                     }
 
                     return $this->update(
-                        $order->id, [
+                        $order->id,
+                        [
                         'status' => 'cancelled',
                         'is_shipped' => false,
                         ]
