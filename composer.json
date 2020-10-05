@@ -29,7 +29,7 @@
         "php": "^7.4",
         "propaganistas/laravel-phone": "^4.2.5",
         "laravel/helpers": "^1.1",
-        "sierratecnologia/crypto": "dev-master"
+        "sierratecnologia/crypto": "^0.4.0"
     },
     "autoload": {
         "psr-4": {
@@ -41,7 +41,6 @@
         "post-update-cmd": [],
         "post-create-project-cmd": []
     },
-    "repositories": [{"type": "path","url":"../**","options":{"symlink": true}}],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
