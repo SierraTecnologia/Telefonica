@@ -114,7 +114,7 @@ class TelefonicaProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom($this->getPublishesPath('config/sitec/telefonica.php'), 'sitec.telefonica');
+        $this->mergeConfigFrom($this->getPublishesPath('config'.DIRECTORY_SEPARATOR.'sitec'.DIRECTORY_SEPARATOR.'telefonica.php'), 'sitec.telefonica');
         
 
         $this->setProviders();
@@ -123,7 +123,7 @@ class TelefonicaProvider extends ServiceProvider
 
 
         // Register Migrations
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'database'.DIRECTORY_SEPARATOR.'migrations');
 
         $this->app->singleton(
             'telefonica', function () {
