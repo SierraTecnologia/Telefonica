@@ -235,7 +235,7 @@ class TelefonicaProvider extends ServiceProvider
         Config::set(
             'logging.channels.sitec-telefonica', [
             'driver' => 'single',
-            'path' => storage_path('logs'.DIRECTORY_SEPARACTOR.'sitec-telefonica.log'),
+            'path' => storage_path('logs'.DIRECTORY_SEPARATOR.'sitec-telefonica.log'),
             'level' => env('APP_LOG_LEVEL', 'debug'),
             ]
         );
