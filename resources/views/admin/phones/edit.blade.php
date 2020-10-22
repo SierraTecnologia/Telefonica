@@ -17,7 +17,7 @@
            <div class="box-body panel-body card-body">
                <div class="row">
 
-                   @include('layouts.partials.message')
+                   @include('pedreiro::partials.message')
 
                    {!! Form::model($phone, ['route' => ['phones.update', $phone->id], 'method' => 'patch']) !!}
 

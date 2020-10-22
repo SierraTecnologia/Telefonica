@@ -10,7 +10,7 @@
 @section('content')
     <div class="clearfix"></div>
 
-    @include('layouts.partials.message')
+    @include('pedreiro::partials.message')
 
     <div class="clearfix"></div>
     <div class="box panel card box-primary panel-primary card-primary">
