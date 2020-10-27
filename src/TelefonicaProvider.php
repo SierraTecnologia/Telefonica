@@ -106,7 +106,7 @@ class TelefonicaProvider extends ServiceProvider
         /**
          * Transmissor; Routes
          */
-        $this->loadRoutesForRiCa(__DIR__.'/../routes');
+        $this->loadRoutesForRiCa(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'routes');
     }
 
     /**
@@ -114,7 +114,7 @@ class TelefonicaProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom($this->getPublishesPath('config/sitec/telefonica.php'), 'sitec.telefonica');
+        $this->mergeConfigFrom($this->getPublishesPath('config'.DIRECTORY_SEPARATOR.'sitec'.DIRECTORY_SEPARATOR.'telefonica.php'), 'sitec.telefonica');
         
 
         $this->setProviders();
@@ -123,7 +123,7 @@ class TelefonicaProvider extends ServiceProvider
 
 
         // Register Migrations
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'database'.DIRECTORY_SEPARATOR.'migrations');
 
         $this->app->singleton(
             'telefonica', function () {
@@ -188,7 +188,7 @@ class TelefonicaProvider extends ServiceProvider
         $this->publishes(
             [
             // Paths
-            $this->getPublishesPath('config/sitec') => config_path('sitec'),
+            $this->getPublishesPath('config'.DIRECTORY_SEPARATOR.'sitec') => config_path('sitec'),
             ], ['config',  'sitec', 'sitec-config']
         );
 
@@ -208,7 +208,7 @@ class TelefonicaProvider extends ServiceProvider
         $this->loadViewsFrom($viewsPath, 'telefonica');
         $this->publishes(
             [
-            $viewsPath => base_path('resources/views/vendor/telefonica'),
+            $viewsPath => base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'telefonica'),
             ], ['views',  'sitec', 'sitec-views']
         );
     }
@@ -218,7 +218,7 @@ class TelefonicaProvider extends ServiceProvider
         // Publish lanaguage files
         $this->publishes(
             [
-            $this->getResourcesPath('lang') => resource_path('lang/vendor/telefonica')
+            $this->getResourcesPath('lang') => resource_path('lang'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'telefonica')
             ], ['lang',  'sitec', 'sitec-lang', 'translations']
         );
 
@@ -235,7 +235,7 @@ class TelefonicaProvider extends ServiceProvider
         Config::set(
             'logging.channels.sitec-telefonica', [
             'driver' => 'single',
-            'path' => storage_path('logs/sitec-telefonica.log'),
+            'path' => storage_path('logs'.DIRECTORY_SEPARATOR.'sitec-telefonica.log'),
             'level' => env('APP_LOG_LEVEL', 'debug'),
             ]
         );
