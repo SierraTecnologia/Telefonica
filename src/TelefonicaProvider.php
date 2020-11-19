@@ -57,7 +57,7 @@ class TelefonicaProvider extends ServiceProvider
                 'label_color' => 'success',
                 'section' => "master",
                 'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-                // 'access' => \App\Models\Role::$ADMIN
+                // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
             'Procurar' => [
                 [
@@ -68,7 +68,7 @@ class TelefonicaProvider extends ServiceProvider
                     'label_color' => 'success',
                     'section' => "master",
                     'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-                    // 'access' => \App\Models\Role::$ADMIN
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
                 ],
             ],
         ],
