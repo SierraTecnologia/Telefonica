@@ -3,6 +3,7 @@
 namespace Telefonica\Models\Actors;
 
 use Pedreiro\Models\Base;
+use Templeiro\Models\Data;
 use Telefonica\Traits\AsHuman;
 use Cocur\Slugify\Slugify;
 use Telefonica\Traits\AsOrganization;
@@ -73,6 +74,11 @@ class Business extends Base
     public function collaborators()
     {
         return $this->morphedByMany(Person::class, 'businessable'); //, 'businessable_type', 'businessable_code');
+    }
+
+    public function datas()
+    {
+        return $this->morphMany(Data::class, 'datable'); //, 'datable_type', 'datable_code');
     }
 
 
