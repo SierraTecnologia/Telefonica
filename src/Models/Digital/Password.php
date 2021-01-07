@@ -17,24 +17,19 @@ class Password extends Base
      * @var array
      */
     protected $fillable = [
-        'email',
-        'password',
-        'url',
+        'value',
+        'date',
     ];
 
     protected $mappingProperties = array(
         /**
          * User Info
          */
-        'email' => [
+        'value' => [
             'type' => 'string',
             "analyzer" => "standard",
         ],
-        'password' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'url' => [
+        'date' => [
             'type' => 'string',
             "analyzer" => "standard",
         ],
