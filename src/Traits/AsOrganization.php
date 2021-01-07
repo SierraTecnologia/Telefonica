@@ -15,7 +15,7 @@ use Overtrue\LaravelFollow\Traits\CanLike;
 
 use Overtrue\LaravelFollow\Traits\CanSubscribe;
 use Overtrue\LaravelFollow\Traits\CanVote;
-// use Stalker\Traits\HasPhoto;
+use Stalker\Traits\HasPhoto;
 use Telefonica\Traits\HasRoutine;
 use Telefonica\Traits\HasTask;
 
@@ -28,7 +28,8 @@ trait AsOrganization
     use CanFollow, CanLike, CanFavorite, CanSubscribe, CanVote, CanBookmark;
     use CanBeFollowed;
 
-    // use HasPhoto; @todo Nao precisa do Stalker
+    // @todo Nao precisa do Stalker -> Eu tinha removido mas voltei pq ta dando bill
+    use HasPhoto; 
 
     /**
      * Aparece em videos

@@ -49,6 +49,26 @@ class TelefonicaProvider extends ServiceProvider
             'section' => "master",
             'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
+        [
+            'text' => 'Bens',
+            'icon' => 'fas fa-fw fa-search',
+            'icon_color' => "blue",
+            'label_color' => "success",
+            'section' => "master",
+            'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+        ],
+        'Bens' => [
+            [
+                'text'        => 'Accounts',
+                'route'       => 'master.telefonica.accounts.index',
+                'icon'        => 'fas fa-fw fa-ship',
+                'icon_color'  => 'blue',
+                'label_color' => 'success',
+                'section' => "master",
+                'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+                // 'access' => \Porteiro\Models\Role::$ADMIN
+            ],
+        ],
         'Telefonica' => [
             [
                 'text'        => 'Procurar',

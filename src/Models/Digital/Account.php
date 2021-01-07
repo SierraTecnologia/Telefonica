@@ -52,6 +52,51 @@ class Account extends Base
             "analyzer" => "standard",
         ],
     );
+    public $formFields = [
+        [
+            'name' => 'username',
+            'label' => 'username',
+            'type' => 'text'
+        ],
+        [
+            'name' => 'password',
+            'label' => 'password',
+            'type' => 'text'
+        ],
+        [
+            'name' => 'email',
+            'label' => 'email',
+            'type' => 'text'
+        ],
+        [
+            'name' => 'customize_url',
+            'label' => 'customize_url',
+            'type' => 'text'
+        ],
+        // ['name' => 'init', 'label' => 'Inicio', 'type' => 'date'],
+        // ['name' => 'end', 'label' => 'End', 'type' => 'date'],
+        // [
+        //     'name' => 'status',
+        //     'label' => 'Status',
+        //     'type' => 'checkbox'
+        // ],
+        // [
+        //     'name' => 'obs',
+        //     'label' => 'Observations',
+        //     'type' => 'textarea'
+        // ],
+        ['name' => 'integration_id', 'label' => 'Integração', 'type' => 'select', 'relationship' => 'integration'],
+        // ['name' => 'tags', 'label' => 'Tags', 'type' => 'select_multiple', 'relationship' => 'tags'],
+    ];
+
+    public $indexFields = [
+        'username',
+        'description',
+        'password',
+        'email',
+        'customize_url',
+        'integration_id',
+    ];
     
     public function getUser()
     {
