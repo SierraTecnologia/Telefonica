@@ -21,6 +21,8 @@ class Password extends Base
     protected $fillable = [
         'value',
         'date',
+        'is_active',
+        'obs'
     ];
 
     protected $mappingProperties = array(

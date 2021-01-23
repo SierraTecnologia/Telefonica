@@ -170,7 +170,7 @@ class Account extends Base
      */
     public function passwords()
     {
-        return $this->morphedByMany(Password::class, 'passwordable');
+        return $this->morphToMany(Password::class, 'passwordable');
     }
 
     public static function boot()
