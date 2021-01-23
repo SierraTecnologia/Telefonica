@@ -28,6 +28,7 @@ class Account extends Base
         'customize_url',
         'status',
         'integration_id',
+        'obs',
     ];
 
     protected $mappingProperties = array(
@@ -80,11 +81,11 @@ class Account extends Base
         //     'label' => 'Status',
         //     'type' => 'checkbox'
         // ],
-        // [
-        //     'name' => 'obs',
-        //     'label' => 'Observations',
-        //     'type' => 'textarea'
-        // ],
+        [
+            'name' => 'obs',
+            'label' => 'Observations',
+            'type' => 'textarea'
+        ],
         ['name' => 'integration_id', 'label' => 'Integração', 'type' => 'select', 'relationship' => 'integration'],
         // ['name' => 'tags', 'label' => 'Tags', 'type' => 'select_multiple', 'relationship' => 'tags'],
     ];
@@ -96,6 +97,7 @@ class Account extends Base
         'email',
         'customize_url',
         'integration_id',
+        'obs'
     ];
     
     public function getUser()
@@ -161,5 +163,28 @@ class Account extends Base
         }
 
         parent::save();
+    }
+
+    /**
+     * Get all of the passwords that are assigned this tag.
+     */
+    public function passwords()
+    {
+        return $this->morphedByMany(Password::class, 'passwordable');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::created(
+            function ($model) {
+                $pass = Password::firstOrCreate([
+                    'value' => $model->password,
+                ]);
+                $model->passwords()->attach($pass);
+            }
+        );
+
     }
 }

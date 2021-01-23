@@ -3,6 +3,8 @@
 namespace Telefonica\Models\Digital;
 
 use Pedreiro\Models\Base;
+use Bancario\Models\BankAccount;
+use Telefonica\Models\Digital\Account;
 
 class Password extends Base
 {
@@ -37,11 +39,28 @@ class Password extends Base
 
     /**
      * Get the owning passwordable model.
+     * 
+     * Esse é o morph sem ser de many to many
      */
     public function passwordable()
     {
         return $this->morphTo();
     }
+
+    /**
+     * Get all of the bankAccounts that are assigned this tag.
+     * Esse é o morph de many to many
+     */
+    public function bankAccounts()
+    {
+        return $this->morphedByMany(BankAccount::class, 'passwordable');
+    }
+
+
+
+
+
+
     // /**
     //  * Get all of the slaves that are assigned this tag.
     //  */
