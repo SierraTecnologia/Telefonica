@@ -47,6 +47,8 @@ class TelefonicaProvider extends ServiceProvider
             'icon_color' => "blue",
             'label_color' => "success",
             'section' => "master",
+            'feature' => 'casa',
+            'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
             'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
         [
@@ -55,6 +57,8 @@ class TelefonicaProvider extends ServiceProvider
             'icon_color' => "blue",
             'label_color' => "success",
             'section' => "master",
+            'feature' => 'casa',
+            'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
             'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
         'Bens' => [
@@ -65,6 +69,8 @@ class TelefonicaProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'section' => "master",
+                'feature' => 'casa',
+                'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
                 'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
@@ -76,6 +82,8 @@ class TelefonicaProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'section' => "master",
+                'feature' => 'casa',
+                'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
                 'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
@@ -87,6 +95,8 @@ class TelefonicaProvider extends ServiceProvider
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
                     'section' => "master",
+                    'feature' => 'casa',
+                    'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
                     'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                     // 'access' => \Porteiro\Models\Role::$ADMIN
                 ],
