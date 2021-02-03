@@ -6,7 +6,7 @@ use Muleta\Utils\Modificators\StringModificator;
 use Pedreiro\Models\Base;
 use Telefonica\Traits\AsHuman;
 
-class Person extends Base implements \Spatie\MediaLibrary\HasMedia
+class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
 {
     use AsHuman;
 
