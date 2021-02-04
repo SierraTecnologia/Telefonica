@@ -2,7 +2,7 @@
 
 namespace Telefonica\Traits;
 
-use Bancario\Traits\MakeEconomicActions;
+use Muleta\Traits\MakeEconomicActions;
 // Podem Seguir
 use Log;
 use Muleta\Traits\Models\HasPersonality;

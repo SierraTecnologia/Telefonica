@@ -32,7 +32,7 @@ class TelefonicaProvider extends ServiceProvider
 
     public static $providers = [
 
-        \Support\SupportProviderService::class,
+        \Population\PopulationProvider::class,
 
         
     ];
