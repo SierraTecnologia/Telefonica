@@ -22,6 +22,8 @@ class Password extends Base
         'value',
         'date',
         'is_active',
+        'email', // @todo acho que nao deveria ter isso aqui
+        'url', // @todo acho que nao deveria ter isso aqui
         'obs'
     ];
 
