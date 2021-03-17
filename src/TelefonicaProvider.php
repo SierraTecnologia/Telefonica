@@ -42,6 +42,16 @@ class TelefonicaProvider extends ServiceProvider
      */
     public static $menuItens = [
         [
+            'text' => 'Pessoas',
+            'icon' => 'fas fa-fw fa-search',
+            'icon_color' => "blue",
+            'label_color' => "success",
+            'section' => "master",
+            'feature' => 'telefonica',
+            'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
+            'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+        ],
+        [
             'text' => 'Telefonica',
             'icon' => 'fas fa-fw fa-search',
             'icon_color' => "blue",
@@ -57,7 +67,7 @@ class TelefonicaProvider extends ServiceProvider
             'icon_color' => "blue",
             'label_color' => "success",
             'section' => "master",
-            'feature' => 'casa',
+            'feature' => 'espolio',
             'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
             'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
