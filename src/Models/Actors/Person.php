@@ -119,4 +119,14 @@ class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
     {
         return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'personable'); //, 'businessable_type', 'businessable_code');
     }
+    
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function (Person $model) {
+            if ($model->code=='') {
+                $model->code = StringModificator::cleanCodeSlug($model->name);
+            }
+        });
+    }
 }
