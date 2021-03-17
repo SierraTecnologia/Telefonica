@@ -1,31 +1,56 @@
-@extends('layouts.app')
+@extends('layouts.page')
+
+@section('title', 'Phones')
+
+@section('content_header')
+    <h1>Phones - Editar</h1>
+@stop
+
+@section('css')
+
+@stop
+
+@section('js')
+
+@stop
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            {!! trans('words.phone') !!}
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> {!! trans('words.home') !!}</a></li>
-            <li><a href="{!! route('root.phones.index') !!}"><i class="fa fa-key"></i> {!! trans('words.phones') !!}</a></li>
-            <li class="active">{!! trans('words.edit') !!}</li>
-        </ol>
-   </section>
-   <div class="content">
-
-       <div class="box panel card box-primary panel-primary card-primary">
-           <div class="box-body panel-body card-body">
-               <div class="row">
-
-                   @include('pedreiro::partials.message')
-
-                   {!! Form::model($phone, ['route' => ['phones.update', $phone->id], 'method' => 'patch']) !!}
-
-                        @include('root.phones.fields')
-
-                   {!! Form::close() !!}
-               </div>
-           </div>
-       </div>
-   </div>
+<style>
+  .uper {
+    margin-top: 40px;
+  }
+</style>
+<div class="card uper">
+  <div class="card-header">
+    Edit Phone
+  </div>
+  <div class="card-body">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
+      <form method="post" action="{{ route('phones.update', $phone->id) }}">
+        @method('PATCH')
+        @csrf
+        <div class="form-group">
+          <label for="name">Phone Country:</label>
+          <input type="text" class="form-control" name="country" value={{ $phone->country }} />
+        </div>
+        <div class="form-group">
+          <label for="price">Phone Region:</label>
+          <input type="text" class="form-control" name="region" value={{ $phone->region }} />
+        </div>
+        <div class="form-group">
+          <label for="quantity">Phone Number:</label>
+          <input type="text" class="form-control" name="number" value={{ $phone->number }} />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+  </div>
+</div>
 @endsection

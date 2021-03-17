@@ -46,70 +46,35 @@ class TelefonicaProvider extends ServiceProvider
             'icon' => 'fas fa-fw fa-search',
             'icon_color' => "blue",
             'label_color' => "success",
-            'section' => "master",
+            // 'section' => "master", // @todo
             'feature' => 'telefonica',
             'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
             'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
-        [
-            'text' => 'Telefonica',
-            'icon' => 'fas fa-fw fa-search',
-            'icon_color' => "blue",
-            'label_color' => "success",
-            'section' => "master",
-            'feature' => 'casa',
-            'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-            'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-        ],
-        [
-            'text' => 'Bens',
-            'icon' => 'fas fa-fw fa-search',
-            'icon_color' => "blue",
-            'label_color' => "success",
-            'section' => "master",
-            'feature' => 'espolio',
-            'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-            'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-        ],
-        'Bens' => [
+        'Pessoas' => [
             [
-                'text'        => 'Accounts',
-                'route'       => 'master.telefonica.accounts.index',
+                'text'        => 'Pessoas',
+                'route'       => 'painel.telefonica.persons.index',
                 'icon'        => 'fas fa-fw fa-ship',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
-                'section' => "master",
-                'feature' => 'casa',
-                'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-                'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+                // 'section' => "painel", // @todo
+                'feature' => 'telefonica',
+                'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
+                'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
-        ],
-        'Telefonica' => [
             [
-                'text'        => 'Procurar',
-                'icon'        => 'fas fa-fw fa-search',
+                'text'        => 'Telefones',
+                'route'       => 'admin.telefonica.phones.index',
+                'icon'        => 'fas fa-fw fa-ship',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
-                'section' => "master",
-                'feature' => 'casa',
-                'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-                'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+                // 'section' => "admin", // @todo
+                'feature' => 'telefonica',
+                'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
+                'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
                 // 'access' => \Porteiro\Models\Role::$ADMIN
-            ],
-            'Procurar' => [
-                [
-                    'text'        => 'Projetos',
-                    'route'       => 'telefonica.projetos.index',
-                    'icon'        => 'fas fa-fw fa-ship',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'section' => "master",
-                    'feature' => 'casa',
-                    'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-                    'level'       => 3, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-                    // 'access' => \Porteiro\Models\Role::$ADMIN
-                ],
             ],
         ],
     ];

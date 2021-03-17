@@ -7,6 +7,7 @@ use Siravel\Models\Blog\Category;
 use Telefonica\Models\Digital\Phone;
 use Stalker\Models\Photo;
 use Stalker\Models\PhotoAlbum;
+use Illuminate\Http\Request;
 
 class PhoneController extends Controller
 {
@@ -16,7 +17,7 @@ class PhoneController extends Controller
     {
 
         $phones = Phone::all();
-        return view('root.phones.index',  compact('phones'));
+        return view('telefonica::admin.phones.index',  compact('phones'));
     }
 
     /**
@@ -26,7 +27,7 @@ class PhoneController extends Controller
      */
     public function create(Request $request)
     {
-        return view('root.phones.create');
+        return view('telefonica::admin.phones.create');
     }
 
     /**
@@ -54,7 +55,7 @@ class PhoneController extends Controller
     {
         $phone = Phone::findOrFail($id);
 
-        return view('root.phones.edit', compact('phone'));
+        return view('telefonica::admin.phones.edit', compact('phone'));
     }
 
     /**
