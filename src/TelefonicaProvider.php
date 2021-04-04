@@ -41,40 +41,55 @@ class TelefonicaProvider extends ServiceProvider
      * Rotas do Menu
      */
     public static $menuItens = [
+        // Igual em: Locaravel, Bancario, Telefonica, Informate, Population
         [
-            'text' => 'Pessoas',
-            'icon' => 'fas fa-fw fa-search',
+            'text' => 'Universo',
+            'icon' => 'fas fa-fw fa-globe-americas',
             'icon_color' => "blue",
             'label_color' => "success",
-            // 'section' => "master", // @todo
-            'feature' => 'telefonica',
-            'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-            'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+            'order' => 2800,
+            'section' => "admin",
+            // 'feature' => 'bancario',
+            'dev_status'  => 2, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
+            'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
-        'Pessoas' => [
+        'Universo' => [
             [
-                'text'        => 'Pessoas',
-                'route'       => 'painel.telefonica.persons.index',
-                'icon'        => 'fas fa-fw fa-ship',
-                'icon_color'  => 'blue',
-                'label_color' => 'success',
-                // 'section' => "painel", // @todo
+                'text' => 'Pessoas',
+                'icon' => 'fas fa-fw fa-search',
+                'icon_color' => "blue",
+                'label_color' => "success",
+                // 'section' => "master", @todo
                 'feature' => 'telefonica',
+                'order' => 2820,
                 'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
                 'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-                // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
-            [
-                'text'        => 'Telefones',
-                'route'       => 'admin.telefonica.phones.index',
-                'icon'        => 'fas fa-fw fa-ship',
-                'icon_color'  => 'blue',
-                'label_color' => 'success',
-                // 'section' => "admin", // @todo
-                'feature' => 'telefonica',
-                'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
-                'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-                // 'access' => \Porteiro\Models\Role::$ADMIN
+            'Pessoas' => [
+                [
+                    'text'        => 'Pessoas',
+                    'route'       => 'painel.telefonica.persons.index',
+                    'icon'        => 'fas fa-fw fa-ship',
+                    'icon_color'  => 'blue',
+                    'label_color' => 'success',
+                    'section' => "painel",
+                    'feature' => 'telefonica',
+                    'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
+                    'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
+                ],
+                [
+                    'text'        => 'Telefones',
+                    'route'       => 'admin.telefonica.phones.index',
+                    'icon'        => 'fas fa-fw fa-address-book',
+                    'icon_color'  => 'blue',
+                    'label_color' => 'success',
+                    'section' => "admin",
+                    'feature' => 'telefonica',
+                    'dev_status'  => 1, // 0 (Desabilitado), 1 (Ativo), 2 (Em Dev)
+                    'level'       => 1, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
+                ],
             ],
         ],
     ];
