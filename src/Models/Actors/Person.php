@@ -5,6 +5,7 @@ namespace Telefonica\Models\Actors;
 use Muleta\Utils\Modificators\StringModificator;
 use Pedreiro\Models\Base;
 use Telefonica\Traits\AsHuman;
+use Illuminate\Support\Str;
 
 class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
 {
@@ -27,7 +28,8 @@ class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
     protected $fillable = [
         'code',
         'name',
-        'cpf'
+        'cpf',
+        'birthday'
     ];
     
     public $formFields = [
@@ -39,6 +41,11 @@ class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
         [
             'name' => 'cpf',
             'label' => 'cpf',
+            'type' => 'text'
+        ],
+        [
+            'name' => 'birthday',
+            'label' => 'birthday',
             'type' => 'text'
         ],
         // [
@@ -64,6 +71,7 @@ class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
     public $indexFields = [
         'name',
         'cpf',
+        'birthday',
         // 'slug',
         // 'status'
     ];
