@@ -1,31 +1,43 @@
-<table class="table table-striped" id="phones-table">
-    <thead>
-        <th>{!! trans('words.name') !!}</th>
-        <th>{!! trans('words.client') !!}</th>
-        <th>{!! trans('words.dominio') !!}</th>
-        <th>{!! trans('words.category') !!}</th>
-        <th colspan="3">{!! trans('words.action') !!}</th>
-    </thead>
-    <tbody>
-        @if (!empty($phones))
+@if (!empty($phones) && !$phones->isEmpty())
+    @if (method_exists($phones,'onEachSide'))
+        {{ $phones->onEachSide(10)->links() }}
+    @endif
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Contry</td>
+                <td>Region</td>
+                <td>Number</td>
+                <td>Usuários</td>
+                <td>Created at</td>
+                <td colspan="2">Action</td>
+            </tr>
+        </thead>
+        <tbody>
             @foreach($phones as $phone)
-            <?php dd($phone) ?>
-                <tr>
-                    <td>{!! $phone->name !!}</td>
-                    <td>{!! $phone->clients->name !!}</td>
-                    <td>{!! $phone->dominios->name !!}</td>
-                    <td>{!! $phone->phoneCategory->name !!}</td>
-                    <td>
-                        {!! Form::open(['route' => ['root.phones.destroy', $phone->id], 'method' => 'delete']) !!}
-                        <div class='btn-group'>
-                            <a href="{!! route('root.phones.show', [$phone->id]) !!}" class='btn btn-secondary btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                            <a href="{!! route('root.phones.edit', [$phone->id]) !!}" class='btn btn-secondary btn-xs'><i class="fa fa-edit"></i> Edit</a>
-                            {!! Form::button('<i class="fa fa-trash"></i> Delete', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('".trans('phrases.areYouSure')."')"]) !!}
-                        </div>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
+            <tr>
+                <td>{{$phone->id}}</td>
+                <td>{{$phone->contry}}</td>
+                <td>{{$phone->region}}</td>
+                <td>{{$phone->number}}</td>
+                <td>{{$phone->customers()->count()}}</td>
+                <td>{{$phone->created_at->format('d/m/Y h:i:s')}}</td>
+                <td>
+                    <a href="{{ route('phones.show',$phone->id)}}" class="btn btn-primary">Show</a>
+                    <!--
+                    <a href="{{ route('phones.edit',$phone->id)}}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('phones.destroy', $phone->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>-->
+                </td>
+            </tr>
             @endforeach
-        @endif
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    @if (method_exists($phones,'onEachSide'))
+        {{ $phones->onEachSide(10)->links() }}
+    @endif
+@endif

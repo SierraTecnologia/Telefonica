@@ -3,4 +3,6 @@
  * Admin
  */
 
-Route::resource('phones', 'PhoneController');
+Route::resource('phones', 'PhoneController')->parameters([
+    'phones' => 'id'
+]);

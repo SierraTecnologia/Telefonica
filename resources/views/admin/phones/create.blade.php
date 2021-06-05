@@ -1,29 +1,55 @@
-@extends('layouts.app')
+@extends('layouts.page')
+
+@section('title', 'Phones')
+
+@section('content_header')
+    <h1>Phones - Criar</h1>
+@stop
+
+@section('css')
+
+@stop
+
+@section('js')
+
+@stop
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            {!! trans('words.phone') !!}
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> {!! trans('words.home') !!}</a></li>
-            <li><a href="{!! route('root.phones.index') !!}"><i class="fa fa-key"></i> {!! trans('words.phones') !!}</a></li>
-            <li class="active">{!! trans('words.addNew') !!}</li>
-        </ol>
-    </section>
-    <div class="content">
-
-        <div class="box panel card box-primary panel-primary card-primary">
-
-            <div class="box-body panel-body card-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'phones.store']) !!}
-
-                        @include('root.phones.fields')
-
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
+<style>
+  .uper {
+    margin-top: 40px;
+  }
+</style>
+<div class="card uper">
+  <div class="card-header">
+    Add Phone
+  </div>
+  <div class="card-body">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
+      <form method="post" action="{{ route('phones.store') }}">
+          <div class="form-group">
+              @csrf
+              <label for="name">Country:</label>
+              <input type="text" class="form-control" name="country"/>
+          </div>
+          <div class="form-group">
+              <label for="price">Region :</label>
+              <input type="text" class="form-control" name="region"/>
+          </div>
+          <div class="form-group">
+              <label for="quantity">Number:</label>
+              <input type="text" class="form-control" name="number"/>
+          </div>
+          <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+  </div>
+</div>
 @endsection

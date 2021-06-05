@@ -5,8 +5,9 @@ namespace Telefonica\Models\Actors;
 use Muleta\Utils\Modificators\StringModificator;
 use Pedreiro\Models\Base;
 use Telefonica\Traits\AsHuman;
+use Illuminate\Support\Str;
 
-class Person extends Base
+class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
 {
     use AsHuman;
 
@@ -27,7 +28,8 @@ class Person extends Base
     protected $fillable = [
         'code',
         'name',
-        'cpf'
+        'cpf',
+        'birthday'
     ];
     
     public $formFields = [
@@ -39,6 +41,11 @@ class Person extends Base
         [
             'name' => 'cpf',
             'label' => 'cpf',
+            'type' => 'text'
+        ],
+        [
+            'name' => 'birthday',
+            'label' => 'birthday',
             'type' => 'text'
         ],
         // [
@@ -64,6 +71,7 @@ class Person extends Base
     public $indexFields = [
         'name',
         'cpf',
+        'birthday',
         // 'slug',
         // 'status'
     ];
@@ -118,5 +126,15 @@ class Person extends Base
     public function users()
     {
         return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'personable'); //, 'businessable_type', 'businessable_code');
+    }
+    
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function (Person $model) {
+            if ($model->code=='') {
+                $model->code = StringModificator::cleanCodeSlug($model->name);
+            }
+        });
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Telefonica\Traits;
 
-use Bancario\Traits\MakeEconomicActions;
+use Muleta\Traits\MakeEconomicActions;
 // Podem Seguir
 use Log;
 use Muleta\Traits\Models\HasPersonality;
@@ -28,7 +28,8 @@ trait AsOrganization
     use CanFollow, CanLike, CanFavorite, CanSubscribe, CanVote, CanBookmark;
     use CanBeFollowed;
 
-    // use HasPhoto; @todo Nao precisa do Stalker
+    // @todo Nao precisa do Stalker -> Eu tinha removido mas voltei pq ta dando bill
+    // use HasPhoto; 
 
     /**
      * Aparece em videos
