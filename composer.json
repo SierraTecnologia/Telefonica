@@ -28,7 +28,7 @@
     "require": {
         "php": "^7.2|^8.0",
         "propaganistas/laravel-phone": "^4.2.5",
-        "sierratecnologia/population": "dev-master",
+        "sierratecnologia/population": "^0.4.0",
         "laravel/helpers": "^1.1",
         "sierratecnologia/crypto": "^0.4.0"
     },
