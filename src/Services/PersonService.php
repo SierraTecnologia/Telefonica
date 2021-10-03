@@ -49,9 +49,10 @@ class PersonService
   "Altura?" => "1.68"
   "Nº sapato?" => "Numeração  40"
   "Redes Sociais." => "Estou no Instagram como @lilp_king. Instale o aplicativo para seguir minhas fotos e vídeos. https://www.instagram.com/invites/contact/?i=g0zjwr5kwk4h&utm_content=wedbxz"
-
+     *
+     * @return true
      */
-    public static function import($data)
+    public static function import($data): bool
     {   
         $registerData = [];
         if (isset($data['Nome'])) {
@@ -159,7 +160,7 @@ class PersonService
      *
      * @param int $id
      *
-     * @return Persons
+     * @return Persons|false
      */
     public function cancel($orderId)
     {
