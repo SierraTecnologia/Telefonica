@@ -89,7 +89,7 @@ class PersonService
     /**
      * Get all Persons.
      *
-     * @return Illuminate\Pagination\LengthAwarePaginator
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function paginated()
     {
