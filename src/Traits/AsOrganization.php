@@ -15,7 +15,7 @@ use Overtrue\LaravelFollow\Traits\CanLike;
 
 use Overtrue\LaravelFollow\Traits\CanSubscribe;
 use Overtrue\LaravelFollow\Traits\CanVote;
-// use Stalker\Traits\HasPhoto;
+// use MediaManager\Traits\HasPhoto;
 use Telefonica\Traits\HasRoutine;
 use Telefonica\Traits\HasTask;
 

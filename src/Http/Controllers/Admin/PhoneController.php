@@ -2,96 +2,101 @@
 
 namespace Telefonica\Http\Controllers\Admin;
 
-use Siravel\Models\Blog\Article;
-use Siravel\Models\Blog\Category;
 use Telefonica\Models\Digital\Phone;
-use Stalker\Models\Photo;
-use Stalker\Models\PhotoAlbum;
 use Illuminate\Http\Request;
+
+use Pedreiro\CrudController;
 
 class PhoneController extends Controller
 {
 
+    use CrudController;
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function index(Request $request)
+    public function __construct(Phone $model)
     {
-
-        $phones = Phone::all();
-        return view('telefonica::admin.phones.index',  compact('phones'));
+        $this->model = $model;
+        parent::__construct();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function create(Request $request)
-    {
-        return view('telefonica::admin.phones.create');
-    }
+    // /**
+    //  * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    //  */
+    // public function index(Request $request)
+    // {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-        Phone::create(['name' => $request->name]);
+    //     $phones = Phone::all();
+    //     return view('telefonica::admin.phones.index',  compact('phones'));
+    // }
 
-        return redirect('phones');
-    }
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    //  */
+    // public function create(Request $request)
+    // {
+    //     return view('telefonica::admin.phones.create');
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function edit(Request $request, $id)
-    {
-        $phone = Phone::findOrFail($id);
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param \Illuminate\Http\Request $request
+    //  *
+    //  * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    //  */
+    // public function store(Request $request)
+    // {
+    //     Phone::create(['name' => $request->name]);
 
-        return view('telefonica::admin.phones.edit', compact('phone'));
-    }
+    //     return redirect('phones');
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request)
-    {
-        $phone = Phone::findOrFail($request->phone_id);
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param int $id
+    //  *
+    //  * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    //  */
+    // public function edit(Request $request, $id)
+    // {
+    //     $phone = Phone::findOrFail($id);
 
-        $phone->name = $request->name;
+    //     return view('telefonica::admin.phones.edit', compact('phone'));
+    // }
 
-        $phone->update();
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param \Illuminate\Http\Request $request
+    //  *
+    //  * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    //  */
+    // public function update(Request $request)
+    // {
+    //     $phone = Phone::findOrFail($request->phone_id);
 
-        return redirect('phones');
-    }
+    //     $phone->name = $request->name;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy(Request $request, $id)
-    {
-        $phone = Phone::findOrFail($id);
+    //     $phone->update();
 
-        $phone->delete();
+    //     return redirect('phones');
+    // }
 
-        return redirect('phones');
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param int $id
+    //  *
+    //  * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+    //  */
+    // public function destroy(Request $request, $id)
+    // {
+    //     $phone = Phone::findOrFail($id);
+
+    //     $phone->delete();
+
+    //     return redirect('phones');
+    // }
 }
