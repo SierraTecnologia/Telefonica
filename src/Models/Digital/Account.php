@@ -9,6 +9,7 @@ use Telefonica\Models\Actors\Business;
 
 class Account extends Base
 {
+    use \Telefonica\Traits\HasMetrics;
     // use ComplexRelationamentTrait;
     
     // protected static $COMPLEX_RELATIONAMENT_MODELS = [
@@ -172,6 +173,20 @@ class Account extends Base
     {
         return $this->morphToMany(Password::class, 'passwordable');
     }
+    /**
+     * Get all of the usernames that are assigned this tag.
+     */
+    public function usernames()
+    {
+        return $this->morphToMany(Username::class, 'usernameable');
+    }
+    /**
+     * Get all of the emails that are assigned this tag.
+     */
+    public function emails()
+    {
+        return $this->morphToMany(Email::class, 'emailable');
+    }
 
     public static function boot()
     {
@@ -179,10 +194,24 @@ class Account extends Base
 
         self::created(
             function ($model) {
-                $pass = Password::firstOrCreate([
-                    'value' => $model->password,
-                ]);
-                $model->passwords()->attach($pass);
+                if(!empty($model->email)){
+                    $pass = Email::firstOrCreate([
+                        'value' => $model->email,
+                    ]);
+                    $model->emails()->attach($pass);
+                }
+                if(!empty($model->username)){
+                    $pass = Username::firstOrCreate([
+                        'value' => $model->username,
+                    ]);
+                    $model->usernames()->attach($pass);
+                }
+                if(!empty($model->password)){
+                    $pass = Password::firstOrCreate([
+                        'value' => $model->password,
+                    ]);
+                    $model->passwords()->attach($pass);
+                }
             }
         );
 
