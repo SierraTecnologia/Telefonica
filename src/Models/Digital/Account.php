@@ -23,6 +23,7 @@ class Account extends Base
      * @var array
      */
     protected $fillable = [
+        'pk',
         'username',
         'password',
         'email',
@@ -33,6 +34,10 @@ class Account extends Base
     ];
 
     protected $mappingProperties = array(
+        'pk' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
         'username' => [
             'type' => 'string',
             "analyzer" => "standard",
@@ -55,6 +60,11 @@ class Account extends Base
         ],
     );
     public $formFields = [
+        [
+            'name' => 'pk',
+            'label' => 'pk',
+            'type' => 'text'
+        ],
         [
             'name' => 'username',
             'label' => 'username',
@@ -196,7 +206,7 @@ class Account extends Base
             function ($model) {
                 if(!empty($model->email)){
                     $pass = Email::firstOrCreate([
-                        'value' => $model->email,
+                        'email' => $model->email,
                     ]);
                     $model->emails()->attach($pass);
                 }

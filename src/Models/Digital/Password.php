@@ -62,6 +62,19 @@ class Password extends Base
 
 
 
+    /**
+     * Get all of the accounts that are assigned this tag.
+     * Esse é o morph de many to many
+     */
+    public function accounts()
+    {
+        return $this->morphedByMany(Account::class, 'passwordable');
+    }
+
+
+
+
+
 
 
 
