@@ -23,7 +23,7 @@ class SocialService
         // }
     }
 
-    public function setAccount($service, $email = null, $password = null, $username = null, $pk = null)
+    public function setAccount($service, $email = null, $username = null,  $password = null, $pk = null)
     {
         $classIntegration = '\Integrations\Connectors\\'.$service.'\\'.$service;
         if (!class_exists($classIntegration)) {
@@ -32,30 +32,45 @@ class SocialService
 
         $account = null;
         if (!empty($pk)) {
-            $account =  Account::where(
+            $accountPk =  Account::where(
                 [
                     'pk' => $pk,
                     'integration_id' => $classIntegration::$ID,
                 ]
             )->first();
-        } else if (!empty($username)) {
-            $account =  Account::where(
+        }
+        if (!empty($username)) {
+            $accountUsername =  Account::where(
                 [
                     'username' => $username,
                     'integration_id' => $classIntegration::$ID,
                 ]
             )->first();
-        } 
+        }
+        $data = 
+        [
+            'email' => $email,
+            'password' => $password,
+            'integration_id' => $classIntegration::$ID,
+        ];
+
+        if (!empty($pk) && !empty($username) && $accountPk && $accountUsername) {
+            $accountUsername->pk = $accountPk->pk;
+            $account = $accountUsername;
+        } else if(!empty($pk) && $accountPk) {
+            $account = $accountPk;
+        } else if(!empty($username) ) {
+            $account = $accountUsername;
+
+            $data['username'] = $username;
+        }if(!empty($pk) ) {
+
+            $data['pk'] = $pk;
+        }
 
         if (!$account){
             $account = Account::create(
-                [
-                    'email' => $email,
-                    'pk' => $pk,
-                    'username' => $username,
-                    'password' => $password,
-                    'integration_id' => $classIntegration::$ID,
-                ]
+                $data
             );
         }else {
             if (!empty($username)) {
