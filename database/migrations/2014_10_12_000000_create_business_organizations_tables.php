@@ -16,8 +16,7 @@ class CreateBusinessOrganizationsTables extends Migration
         /**
          * Businesses
          */
-        Schema::create(
-            'businesses', function (Blueprint $table) {
+        Schema::hasTable('businesses') || Schema::create('businesses', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->string('code')->unique();
                 $table->primary('code');
@@ -38,8 +37,7 @@ class CreateBusinessOrganizationsTables extends Migration
             }
         );
         
-        Schema::create(
-            'businessables', function (Blueprint $table) {
+        Schema::hasTable('businessables') || Schema::create('businessables', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->string('businessable_id');
                 $table->string('businessable_type', 255);
@@ -50,8 +48,7 @@ class CreateBusinessOrganizationsTables extends Migration
             }
         );
         
-        Schema::create(
-            'business_sectors', function (Blueprint $table) {
+        Schema::hasTable('business_sectors') || Schema::create('business_sectors', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name');
                 $table->string('description')->nullable();
@@ -63,8 +60,7 @@ class CreateBusinessOrganizationsTables extends Migration
             }
         );
 
-        Schema::create(
-            'business_products', function (Blueprint $table) {
+        Schema::hasTable('business_products') || Schema::create('business_products', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name');
                 $table->integer('status')->default(1);
@@ -75,8 +71,7 @@ class CreateBusinessOrganizationsTables extends Migration
         );
 
         // @todo Resolver isso aqui
-        Schema::create(
-            'business_collaborators', function (Blueprint $table) {
+        Schema::hasTable('business_collaborators') || Schema::create('business_collaborators', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->nullable();
                 $table->string('cpf')->nullable();

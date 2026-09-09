@@ -6,15 +6,12 @@ use Muleta\Traits\MakeEconomicActions;
 // Podem Seguir
 use Log;
 use Muleta\Traits\Models\HasPersonality;
-use Overtrue\LaravelFollow\Traits\CanBeFollowed;
-use Overtrue\LaravelFollow\Traits\CanBookmark;
-use Overtrue\LaravelFollow\Traits\CanFavorite;
-use Overtrue\LaravelFollow\Traits\CanFollow;
+// laravel-follow v6 consolidou CanFollow/CanLike/CanFavorite/CanSubscribe/
+// CanVote/CanBookmark em Follower, e os CanBe* em Followable.
+use Overtrue\LaravelFollow\Traits\Followable;
+use Overtrue\LaravelFollow\Traits\Follower;
 // Podem Serem Seguidos
-use Overtrue\LaravelFollow\Traits\CanLike;
 
-use Overtrue\LaravelFollow\Traits\CanSubscribe;
-use Overtrue\LaravelFollow\Traits\CanVote;
 // use Stalker\Traits\HasPhoto;
 use Telefonica\Traits\HasRoutine;
 use Telefonica\Traits\HasTask;
@@ -25,8 +22,8 @@ trait AsOrganization
     use MakeEconomicActions, HasTask, HasRoutine;
     use HasServicesAndAccounts, HasContacts, AsFofocavel;
 
-    use CanFollow, CanLike, CanFavorite, CanSubscribe, CanVote, CanBookmark;
-    use CanBeFollowed;
+    use Follower;
+    use Followable;
 
     // @todo Nao precisa do Stalker -> Eu tinha removido mas voltei pq ta dando bill
     // use HasPhoto; 

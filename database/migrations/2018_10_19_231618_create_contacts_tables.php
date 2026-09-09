@@ -13,8 +13,7 @@ class CreateContactsTables extends Migration
     public function up()
     {
         
-        Schema::create(
-            'emails', function (Blueprint $table) {
+        Schema::hasTable('emails') || Schema::create('emails', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->string('email')->unique();
                 $table->primary('email');
@@ -27,8 +26,7 @@ class CreateContactsTables extends Migration
             }
         );
         
-        Schema::create(
-            'emailables', function (Blueprint $table) {
+        Schema::hasTable('emailables') || Schema::create('emailables', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->string('emailable_id');
                 $table->string('emailable_type', 255);
@@ -40,8 +38,7 @@ class CreateContactsTables extends Migration
             }
         );
         
-        Schema::create(
-            'phones', function (Blueprint $table) {
+        Schema::hasTable('phones') || Schema::create('phones', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id')->unsigned();
                 $table->string('country', 255)->default('55')->nullable();
@@ -53,8 +50,7 @@ class CreateContactsTables extends Migration
             }
         );
         
-        Schema::create(
-            'phoneables', function (Blueprint $table) {
+        Schema::hasTable('phoneables') || Schema::create('phoneables', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->integer('phone_id')->unsigned();
                 $table->string('phoneable_id');
