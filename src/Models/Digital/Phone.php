@@ -2,10 +2,9 @@
 
 namespace Telefonica\Models\Digital;
 
-use Pedreiro\Models\Base;
-use Muleta\Traits\Models\ComplexRelationamentTrait;
+use Illuminate\Database\Eloquent\Model;
 
-class Phone extends Base
+class Phone extends Model
 {
 
     /**
@@ -14,7 +13,10 @@ class Phone extends Base
      * @var array
      */
     protected $fillable = [
+        'country',
+        'state',
         'number',
+        'whatsapp',
     ];
 
     protected $mappingProperties = array(

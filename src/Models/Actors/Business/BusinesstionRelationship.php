@@ -2,9 +2,9 @@
 
 namespace Telefonica\Models\Actors\Business;
 
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class BusinesstionRelationship extends Base
+class BusinesstionRelationship extends Model
 {
 
     protected $organizationPerspective = false;

@@ -73,6 +73,11 @@ class Business extends Model
         return $this->hasMany(Business\Collaborator::class, 'business_code', 'code');
     }
 
+    public const ENTITY_TYPE_EMPRESA = 'empresa';
+    public const ENTITY_TYPE_CLIENTE = 'cliente';
+    public const ENTITY_TYPE_PROJETO_SAAS = 'projeto_saas';
+    public const ENTITY_TYPE_HOBBY_GAME = 'hobby_game';
+
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('status', 'active');
@@ -81,6 +86,46 @@ class Business extends Model
     public function scopeOrdered(Builder $query): Builder
     {
         return $query->orderBy('position')->orderBy('name');
+    }
+
+    public function scopeCompanies(Builder $query): Builder
+    {
+        return $query->where('entity_type', self::ENTITY_TYPE_EMPRESA);
+    }
+
+    public function scopeClients(Builder $query): Builder
+    {
+        return $query->where('entity_type', self::ENTITY_TYPE_CLIENTE);
+    }
+
+    public function scopeSaasProjects(Builder $query): Builder
+    {
+        return $query->where('entity_type', self::ENTITY_TYPE_PROJETO_SAAS);
+    }
+
+    public function scopeHobbies(Builder $query): Builder
+    {
+        return $query->where('entity_type', self::ENTITY_TYPE_HOBBY_GAME);
+    }
+
+    public function isOwnCompany(): bool
+    {
+        return ($this->entity_type ?? self::ENTITY_TYPE_EMPRESA) === self::ENTITY_TYPE_EMPRESA;
+    }
+
+    public function isClient(): bool
+    {
+        return ($this->entity_type ?? '') === self::ENTITY_TYPE_CLIENTE;
+    }
+
+    public function isSaasProject(): bool
+    {
+        return ($this->entity_type ?? '') === self::ENTITY_TYPE_PROJETO_SAAS;
+    }
+
+    public function isHobby(): bool
+    {
+        return ($this->entity_type ?? '') === self::ENTITY_TYPE_HOBBY_GAME;
     }
 
     /**

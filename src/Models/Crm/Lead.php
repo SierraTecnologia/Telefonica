@@ -45,6 +45,11 @@ class Lead extends Model
         return $this->hasMany(LeadEvent::class, "lead_id")->latest();
     }
 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(\Telefonica\Models\Commercial\Order::class, 'lead_id');
+    }
+
     public function scopeOpen(Builder $query): Builder
     {
         return $query->whereIn("status", [

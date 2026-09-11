@@ -2,11 +2,10 @@
 
 namespace Telefonica\Models\Digital;
 
-use Pedreiro\Models\Base;
-use Bancario\Models\BankAccount;
+use Illuminate\Database\Eloquent\Model;
 use Telefonica\Models\Digital\Account;
 
-class Password extends Base
+class Password extends Model
 {
 
     protected $organizationPerspective = false;

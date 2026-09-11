@@ -5,7 +5,7 @@ namespace Telefonica\Observers;
 use Event;
 use Log;
 use Illuminate\Support\Str;
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Throwable;
 use Illuminate\Support\Facades\Schema;

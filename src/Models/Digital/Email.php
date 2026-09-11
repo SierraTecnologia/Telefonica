@@ -2,9 +2,9 @@
 
 namespace Telefonica\Models\Digital;
 
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Email extends Base
+class Email extends Model
 {
     public $incrementing = false;
     protected $casts = [

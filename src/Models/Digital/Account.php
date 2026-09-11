@@ -2,12 +2,11 @@
 
 namespace Telefonica\Models\Digital;
 
-use Pedreiro\Models\Base;
-use Muleta\Traits\Models\ComplexRelationamentTrait;
+use Illuminate\Database\Eloquent\Model;
 use Integrations\Models\Integration;
 use Telefonica\Models\Actors\Business;
 
-class Account extends Base
+class Account extends Model
 {
     // use ComplexRelationamentTrait;
     

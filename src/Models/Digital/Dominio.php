@@ -2,9 +2,9 @@
 
 namespace Telefonica\Models\Digital;
 
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Dominio extends Base
+class Dominio extends Model
 {
 
     protected $organizationPerspective = false;

@@ -2,12 +2,11 @@
 
 namespace Telefonica\Models\Actors;
 
-use Muleta\Utils\Modificators\StringModificator;
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 use Telefonica\Traits\AsHuman;
 use Illuminate\Support\Str;
 
-class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
+class Person extends Model
 {
     use AsHuman;
 
@@ -132,8 +131,8 @@ class Person extends Base// implements \Spatie\MediaLibrary\HasMedia
     {
         parent::boot();
         self::creating(function (Person $model) {
-            if ($model->code=='') {
-                $model->code = StringModificator::cleanCodeSlug($model->name);
+            if (empty($model->code)) {
+                $model->code = Str::slug($model->name) ?: (string) Str::uuid();
             }
         });
     }
