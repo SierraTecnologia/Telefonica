@@ -1,53 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Telefonica\Models\Actors\Business;
 
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Telefonica\Models\Actors\Business;
 
-class Product extends Base
+class Product extends Model
 {
+    protected $table = 'business_products';
 
-    protected $organizationPerspective = true;
+    protected $guarded = [];
 
-    protected $table = 'business_products';       
+    public function business(): BelongsTo
+    {
+        return $this->belongsTo(Business::class, 'business_code', 'code');
+    }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'user_id',
-        'customer_id',
-        'credit_card_id',
-        'user_id',
-    ];
-
-
-    protected $mappingProperties = array(
-
-        'customer_id' => [
-            'type' => 'integer',
-            "analyzer" => "standard",
-        ],
-        'credit_card_id' => [
-            'type' => 'integer',
-            "analyzer" => "standard",
-        ],
-        'user_id' => [
-            'type' => 'integer',
-            "analyzer" => "standard",
-        ],
-        'score' => [
-            'type' => 'float',
-            "analyzer" => "standard",
-        ],
-    );
-
-
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'user_id', 'id');
     }
-
 }

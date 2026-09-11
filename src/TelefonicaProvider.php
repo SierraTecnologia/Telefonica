@@ -12,8 +12,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Log;
-use Muleta\Traits\Providers\ConsoleTools;
-
 use Route;
 
 use Telefonica\Facades\Telefonica as TelefonicaFacade;
@@ -21,8 +19,6 @@ use Telefonica\Services\TelefonicaService;
 
 class TelefonicaProvider extends ServiceProvider
 {
-    use ConsoleTools;
-
     public $packageName = 'telefonica';
     const pathVendor = 'sierratecnologia/telefonica';
 
@@ -31,10 +27,6 @@ class TelefonicaProvider extends ServiceProvider
     ];
 
     public static $providers = [
-
-        \Population\PopulationProvider::class,
-
-        
     ];
 
     /**
@@ -261,5 +253,38 @@ class TelefonicaProvider extends ServiceProvider
             'level' => env('APP_LOG_LEVEL', 'debug'),
             ]
         );
+    }
+
+    protected function getPublishesPath(string $path = ''): string
+    {
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'publishes' . ($path ? DIRECTORY_SEPARATOR . $path : '');
+    }
+
+    protected function getResourcesPath(string $path = ''): string
+    {
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'resources' . ($path ? DIRECTORY_SEPARATOR . $path : '');
+    }
+
+    protected function setProviders(): void
+    {
+        foreach (static::$providers as $provider) {
+            if (class_exists($provider)) {
+                $this->app->register($provider);
+            }
+        }
+    }
+
+    protected function loadRoutesForRiCa(string $path): void
+    {
+        if (is_dir($path)) {
+            foreach (glob($path . DIRECTORY_SEPARATOR . '*.php') as $routeFile) {
+                $this->loadRoutesFrom($routeFile);
+            }
+        }
+    }
+
+    protected function registerCommandFolders(array $folders): void
+    {
+        // No-op quando comandos não estiverem presentes
     }
 }

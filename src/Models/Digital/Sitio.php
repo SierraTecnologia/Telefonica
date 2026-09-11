@@ -1,67 +1,62 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Telefonica\Models\Digital;
 
-use Pedreiro\Models\Base;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Telefonica\Models\Actors\Business;
+use Telefonica\Models\Crm\Lead;
 
-class Sitio extends Base
+class Sitio extends Model
 {
+    protected $table = 'sites';
+
+    protected $guarded = [];
+
+    protected function casts(): array
+    {
+        return [
+            'accepts_leads' => 'boolean',
+            'active' => 'boolean',
+            'position' => 'integer',
+        ];
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Business::class, 'company_id');
+    }
+
+    public function leads(): HasMany
+    {
+        return $this->hasMany(Lead::class, 'site_id');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopeOrdered(Builder $query): Builder
+    {
+        return $query->orderBy('position')->orderBy('name');
+    }
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Compatibilidade legada
      */
-    protected $fillable = [
-        'name',
-        'url',
-        'sitio_id'
-    ];
+    public function getUrlAttribute(): ?string
+    {
+        return 'https://' . ($this->attributes['slug'] ?? 'ricasolucoes') . '.com.br';
+    }
 
-    protected $mappingProperties = array(
-        'name' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'url' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'sitio_id' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-    );
-
-    /**
-     * Get all of the businesses that are assigned this tag.
-     */
     public function businesses()
     {
-        return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('sitec-tools.models.business', \Telefonica\Models\Actors\Business::class), 'sitioable');
-    }
-
-    /**
-     * Get all of the girls that are assigned this tag.
-     */
-    public function girls()
-    {
-        return $this->morphedByMany('Population\Models\Market\Actors\Girl', 'sitioable');
-    }
-
-    /**
-     * Get all of the users that are assigned this tag.
-     */
-    public function users()
-    {
-        return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'sitioable');
-    }
-
-    /**
-     * Aparece em videos
-     */
-    public function videos()
-    {
-        return $this->morphedByMany('Stalker\Models\Video', 'sitioable');
+        return $this->company();
     }
 }
+

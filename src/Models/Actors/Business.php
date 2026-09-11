@@ -1,85 +1,103 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Telefonica\Models\Actors;
 
-use Pedreiro\Models\Base;
-use Templeiro\Models\Data;
-use Telefonica\Traits\AsHuman;
-use Cocur\Slugify\Slugify;
-use Telefonica\Traits\AsOrganization;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Telefonica\Models\Digital\Site as SiteModel;
+use Telefonica\Models\Digital\Sitio as SitioModel;
+use Telefonica\Models\Crm\Lead as LeadModel;
 
-class Business extends Base
+class Business extends Model
 {
-    use AsOrganization;
+    protected $table = 'companies';
 
-    public $incrementing = false;
-    protected $casts = [
-        'code' => 'string',
-    ];
-    protected $primaryKey = 'code';
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
+
+    protected $guarded = [];
+
+    protected function casts(): array
+    {
+        return [
+            'services' => 'array',
+            'pricing_models' => 'array',
+            'products' => 'array',
+            'tech_stack' => 'array',
+            'guardrails' => 'array',
+            'stats' => 'array',
+            'social_links' => 'array',
+            'founded_year' => 'integer',
+            'position' => 'integer',
+        ];
+    }
+
+    public function sites(): HasMany
+    {
+        return $this->hasMany(SitioModel::class, 'company_id');
+    }
+
+    public function leads(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            LeadModel::class,
+            SitioModel::class,
+            'company_id',
+            'site_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function parentCompany(): BelongsTo
+    {
+        return $this->belongsTo(static::class, 'parent_company_code', 'code');
+    }
+
+    public function subCompanies(): HasMany
+    {
+        return $this->hasMany(static::class, 'parent_company_code', 'code');
+    }
+
+    public function businessProducts(): HasMany
+    {
+        return $this->hasMany(Business\Product::class, 'business_code', 'code');
+    }
+
+    public function businessCollaborators(): HasMany
+    {
+        return $this->hasMany(Business\Collaborator::class, 'business_code', 'code');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('status', 'active');
+    }
+
+    public function scopeOrdered(Builder $query): Builder
+    {
+        return $query->orderBy('position')->orderBy('name');
+    }
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Compatibilidade legada
      */
-    protected $fillable = [
-        'name',
-        'code',
-        'language_code',
-        'money_code',
-        'user_id'
-    ];
-
-    protected $mappingProperties = array(
-        'name' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'code' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'language_code' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'money_code' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-        'user_id' => [
-            'type' => 'string',
-            "analyzer" => "standard",
-        ],
-    );
-        
-    // /**
-    //  * Get all of the owning businessable models.
-    //  */
-    // @todo A relacao porliformica é diferente nesse caso, podemos ter varias pessoas associadas ao mesmo item.
-    // public function businessable()
-    // {
-    //     return $this->morphTo(); //, 'businessable_type', 'businessable_code'
-    // }
-
-    /**
-     * Get all of the users that are assigned this tag.
-     */
-    public function users()
+    public function getDominioAttribute(): ?string
     {
-        return $this->morphedByMany(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'businessable'); //, 'businessable_type', 'businessable_code');
-    }
-    public function collaborators()
-    {
-        return $this->morphedByMany(Person::class, 'businessable'); //, 'businessable_type', 'businessable_code');
+        return $this->attributes['website'] ?? null;
     }
 
-    public function datas()
+    public function getSubdominioAttribute(): ?string
     {
-        return $this->morphMany(Data::class, 'datable'); //, 'datable_type', 'datable_code');
+        return $this->attributes['code'] ?? null;
     }
 
-
+    public function isDefault()
+    {
+        return ($this->code === 'ricasolucoes' || $this->code === 'sierratecnologia');
+    }
 }
