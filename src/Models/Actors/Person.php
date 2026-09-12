@@ -27,6 +27,7 @@ class Person extends Model
     protected $fillable = [
         'code',
         'name',
+        'email',
         'cpf',
         'birthday'
     ];

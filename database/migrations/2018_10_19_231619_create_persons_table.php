@@ -19,6 +19,7 @@ return new class extends Migration
                 $table->string('code')->unique();
                 $table->primary('code');
                 $table->string('name', 255)->nullable();
+                $table->string('email')->nullable()->index();
                 $table->text('description')->nullable();
                 $table->string('cpf')->nullable();
                 $table->string('birthday')->nullable();
