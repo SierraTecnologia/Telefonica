@@ -1,5 +1,7 @@
 <?php
 
+use Telefonica\Http\Controllers\ProjectController;
+
 Route::group(
     ['middleware' => ['web']], function () {
 
@@ -10,7 +12,7 @@ Route::group(
 
 
 
-                        Route::resource('projects', 'ProjectController');
+                        Route::resource('projects', ProjectController::class);
                         // /**
                         //  * 
                         //  */
