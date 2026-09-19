@@ -18,7 +18,11 @@ class SiteProject extends Model
 
     public const STEPS = [
         'dominio' => 'Domínio',
-        'dns' => 'DNS',
+        'dns' => 'DNS (Cloudflare)',
+        'repositorio' => 'Repositório do cliente (GitHub)',
+        'docs' => 'README e documentação',
+        'contas' => 'Acessos e contas do cliente',
+        'modelo' => 'Modelo para aprovação (IA, até 24h)',
         'codigo' => 'Código HTML',
         'servidor' => 'Configuração do servidor',
         'pr' => 'Pull request no repositório dos sites',
@@ -29,11 +33,15 @@ class SiteProject extends Model
     {
         return [
             'briefing' => 'array',
+            'reference_links' => 'array',
             'steps' => 'array',
             'briefing_progress' => 'integer',
             'briefing_completed_at' => 'datetime',
             'meeting_at' => 'datetime',
             'published_at' => 'datetime',
+            'kickoff_at' => 'datetime',
+            'docs_generated_at' => 'datetime',
+            'approved_at' => 'datetime',
             'pr_number' => 'integer',
         ];
     }

@@ -25,6 +25,14 @@ class Email extends Model
         'integration_id',
     ];
 
+    public static function createIfNotExistAndReturn($email)
+    {
+        if (is_array($email)) {
+            return static::firstOrCreate($email);
+        }
+        return static::firstOrCreate(['email' => $email]);
+    }
+
     protected $mappingProperties = array(
         /**
          * User Info
