@@ -368,5 +368,72 @@ class TelefonicaTest extends TestCase
         $this->assertDatabaseHas('funnel_visits', ['uuid' => 'funnel-001']);
         $this->assertEquals($lead->id, $funnel->lead->id);
     }
+
+    public function test_advanced_commercial_models()
+    {
+        $site = \Telefonica\Models\Digital\Site::create([
+            'slug' => 'comm-test.com.br',
+            'name' => 'Comm Site',
+        ]);
+        $lead = \Telefonica\Models\Crm\Lead::create([
+            'uuid' => 'lead-comm-001',
+            'site_id' => $site->id,
+            'name' => 'Comm Lead',
+            'email' => 'comm@test.com',
+            'status' => 'novo',
+        ]);
+        $clientAccount = \Telefonica\Models\Commercial\ClientAccount::create([
+            'lead_id' => $lead->id,
+            'email' => 'comm@test.com',
+            'name' => 'Comm Corp',
+        ]);
+        $project = \Telefonica\Models\Commercial\SiteProject::create([
+            'client_account_id' => $clientAccount->id,
+            'domain' => 'comm-test.com.br',
+            'status' => 'aguardando_acesso',
+        ]);
+
+        $aiRun = \Telefonica\Models\Commercial\AiRun::create([
+            'kind' => 'perguntas',
+            'provider' => 'gemini',
+            'model' => 'gemini-2.5-pro',
+            'input' => ['prompt' => 'hello'],
+            'output' => ['response' => 'world'],
+            'input_tokens' => 10,
+            'output_tokens' => 20,
+        ]);
+        $this->assertDatabaseHas('ai_runs', ['kind' => 'perguntas']);
+        $this->assertNotNull($aiRun->uuid);
+        $this->assertEquals(30, $aiRun->totalTokens());
+
+        $designRound = \Telefonica\Models\Commercial\DesignRound::create([
+            'site_project_id' => $project->id,
+            'number' => 1,
+            'status' => 'perguntas',
+            'answers' => ['color' => 'blue'],
+        ]);
+        $this->assertDatabaseHas('design_rounds', ['number' => 1]);
+        $this->assertNotNull($designRound->uuid);
+
+        $financeEntry = \Telefonica\Models\Commercial\FinanceEntry::create([
+            'kind' => 'receita',
+            'category' => 'mensalidade',
+            'description' => 'Mensalidade plano pro',
+            'amount' => 1500.00,
+            'occurred_at' => now()->toDateString(),
+        ]);
+        $this->assertDatabaseHas('finance_entries', ['category' => 'mensalidade']);
+        $this->assertNotNull($financeEntry->id);
+        $this->assertTrue(\Telefonica\Models\Commercial\FinanceEntry::revenue()->where('id', $financeEntry->id)->exists());
+
+        $inbound = \Telefonica\Models\Commercial\InboundMessage::create([
+            'channel' => 'whatsapp',
+            'from' => '5511999997777',
+            'body' => 'Quero orçamento',
+            'type' => 'text',
+        ]);
+        $this->assertDatabaseHas('inbound_messages', ['from' => '5511999997777']);
+        $this->assertNotNull($inbound->id);
+    }
 }
 
